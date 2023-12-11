@@ -32,6 +32,7 @@ function install_prerequirements {
 	check_command git
 	check_command curl
 	check_command zsh
+    check_command alacritty
 	check_command tmux
 }
 
@@ -45,10 +46,34 @@ function install_fonts {
 	unzip ~/.fonts/GeistMono.zip -d ~/.fonts/ && rm ~/.fonts/GeistMono.zip
 }
 
+function configure_tmux {
+	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+	cp ./.tmux.conf ~/.tmux.conf
+}
+
+function configure_alacritty {
+	cp -r ./.config/alacritty/ ~/.config/
+}
+
+function configure_zsh {
+	install_omz
+	install_powerlevel10k
+	git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+	cp ./.zshrc /home/$USER/.zshrc
+	cp ./.p10k.zsh /home/$USER/.p10k.zsh
+}
+
+function configure_picom {
+	cp ./.config/picom.conf /home/$USER/.config/
+}
+
 function main {
 	install_prerequirements
 	install_omz
 	install_fonts
+    configure_tmux
+    configure_alacritty
 }
 
 main
