@@ -46,6 +46,10 @@ function install_fonts {
 	unzip ~/.fonts/GeistMono.zip -d ~/.fonts/ && rm ~/.fonts/GeistMono.zip
 }
 
+function install_picom {
+	check_command picom
+}
+
 function configure_tmux {
 	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 	cp ./.tmux.conf ~/.tmux.conf
@@ -65,7 +69,8 @@ function configure_zsh {
 }
 
 function configure_picom {
-	cp ./.config/picom.conf /home/$USER/.config/
+	install_picom
+	cp ./.config/picom.conf ~/.config/
 }
 
 function main {
@@ -74,6 +79,7 @@ function main {
 	configure_tmux
 	configure_alacritty
 	configure_zsh
+	configure_picom
 }
 
 main
