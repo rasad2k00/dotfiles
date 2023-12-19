@@ -50,6 +50,10 @@ function install_picom {
 	check_command picom
 }
 
+function install_i3 {
+	check_command i3-gaps-rounded-git
+}
+
 function configure_tmux {
 	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 	cp ./.tmux.conf ~/.tmux.conf
@@ -73,6 +77,11 @@ function configure_picom {
 	cp ./.config/picom.conf ~/.config/
 }
 
+function configure_i3 {
+	install_i3
+	cp -r ./.config/i3/ ~/.config/
+}
+
 function main {
 	install_prerequirements
 	install_fonts
@@ -80,6 +89,7 @@ function main {
 	configure_alacritty
 	configure_zsh
 	configure_picom
+	configure_i3
 }
 
 main
