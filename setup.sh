@@ -54,6 +54,11 @@ function install_i3 {
 	check_command i3-gaps-rounded-git
 }
 
+function install_lunarvim {
+	check_command neovim
+	LV_BRANCH='release-1.3/neovim-0.9' bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.3/neovim-0.9/utils/installer/install.sh)
+}
+
 function configure_tmux {
 	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 	cp ./.tmux.conf ~/.tmux.conf
@@ -86,6 +91,11 @@ function configure_wallpaper {
 	cp -r ./Wallpapers/ ~/Pictures/
 }
 
+function configure_lunarvim {
+	install_lunarvim
+	cp -r ./.config/lvim/ ~/.config/
+}
+
 function main {
 	install_prerequirements
 	install_fonts
@@ -95,6 +105,7 @@ function main {
 	configure_picom
 	configure_i3
 	configure_wallpaper
+	configure_lunarvim
 }
 
 main
