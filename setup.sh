@@ -82,6 +82,10 @@ function configure_i3 {
 	cp -r ./.config/i3/ ~/.config/
 }
 
+function configure_wallpaper {
+	cp -r ./Wallpapers/ ~/Pictures/
+}
+
 function main {
 	install_prerequirements
 	install_fonts
@@ -90,6 +94,7 @@ function main {
 	configure_zsh
 	configure_picom
 	configure_i3
+	configure_wallpaper
 }
 
 main
