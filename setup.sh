@@ -1,6 +1,6 @@
 function install_package {
-	if command -v pacman &>/dev/null; then
-		sudo pacman -S $1
+	if command -v yay &>/dev/null; then
+		yay -S $1
 		return 0
 	fi
 	if command -v apt &>/dev/null; then
