@@ -28,8 +28,17 @@ function install_prerequirements {
 	check_command git
 	check_command curl
 	check_command zsh
-	check_command alacritty
 	check_command tmux
+	check_command neovim
+	check_command go
+	check_command cargo
+}
+
+function install_fonts {
+	curl -sO "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf" --output-dir "~/.local/share/fonts"
+	curl -sO "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf" --output-dir "~/.local/share/fonts"
+	curl -sO "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf" --output-dir "~/.local/share/fonts"
+	curl -sO "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf" --output-dir "~/.local/share/fonts"
 }
 
 function install_omz {
@@ -40,32 +49,18 @@ function install_powerlevel10k {
 	git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 }
 
-function install_fonts {
-	mkdir ~/.fonts/
-	curl -sLO "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/GeistMono.zip" --output-dir ~/.fonts/
-	unzip ~/.fonts/GeistMono.zip -d ~/.fonts/ && rm ~/.fonts/GeistMono.zip
+function install_nvm {
+	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
 }
 
-function install_picom {
-	check_command picom
-}
-
-function install_i3 {
-	check_command i3-gaps-rounded-git
-}
-
-function install_lunarvim {
-	check_command neovim
-	LV_BRANCH='release-1.3/neovim-0.9' bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.3/neovim-0.9/utils/installer/install.sh)
+function install_node {
+	install_nvm
+	nvm install --lts
 }
 
 function configure_tmux {
 	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-	cp ./.tmux.conf ~/.tmux.conf
-}
-
-function configure_alacritty {
-	cp -r ./.config/alacritty/ ~/.config/
+	ln -s ./.tmux.conf ~/.tmux.conf
 }
 
 function configure_zsh {
@@ -73,39 +68,22 @@ function configure_zsh {
 	install_powerlevel10k
 	git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-	cp ./.zshrc ~/.zshrc
-	cp ./.p10k.zsh ~/.p10k.zsh
+	ln -s ./.zshrc ~/.zshrc
+	ln -s ./.p10k.zsh ~/.p10k.zsh
 }
 
-function configure_picom {
-	install_picom
-	cp ./.config/picom.conf ~/.config/
-}
 
-function configure_i3 {
-	install_i3
-	cp -r ./.config/i3/ ~/.config/
-}
-
-function configure_wallpaper {
-	cp -r ./Wallpapers/ ~/Pictures/
-}
-
-function configure_lunarvim {
-	install_lunarvim
-	cp -r ./.config/lvim/ ~/.config/
+function configure_neovim {
+	ln -s .config/nvim ~/.config/nvim
 }
 
 function main {
 	install_prerequirements
 	install_fonts
+	install_node
 	configure_tmux
-	configure_alacritty
 	configure_zsh
-	configure_picom
-	configure_i3
-	configure_wallpaper
-	configure_lunarvim
+	configure_neovim
 }
 
 main
