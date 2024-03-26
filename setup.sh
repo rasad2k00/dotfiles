@@ -41,14 +41,6 @@ function install_fonts {
 	curl -sO "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf" --output-dir "~/.local/share/fonts"
 }
 
-function install_omz {
-	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --skip-chsh --unattended
-}
-
-function install_powerlevel10k {
-	git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-}
-
 function install_nvm {
 	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
 }
@@ -64,14 +56,13 @@ function configure_tmux {
 }
 
 function configure_zsh {
-	install_omz
-	install_powerlevel10k
-	git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+	mkdir -p ~/.zsh
+	git clone https://github.com/sindresorhus/pure.git ~/.zsh/pure
+	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh/zsh-syntax-highlighting
+	git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+	git clone https://github.com/jeffreytse/zsh-vi-mode.git ~/.zsh/zsh-vi-mode
 	ln -s ./.zshrc ~/.zshrc
-	ln -s ./.p10k.zsh ~/.p10k.zsh
 }
-
 
 function configure_neovim {
 	ln -s .config/nvim ~/.config/nvim
