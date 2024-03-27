@@ -1,5 +1,5 @@
 # Pure prompt 
-fpath+=(~/.zsh/pure)
+fpath+=($HOME/.zsh/pure)
 autoload -U promptinit; promptinit
 prompt pure
 
@@ -18,6 +18,21 @@ function zvm_vi_yank {
 	echo "$CUTBUFFER" | pbcopy
 	zvm_exit_visual_mode
 }
+
+# Enable history functionality
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt appendhistory
+
+# Custom aliases
+alias ls="ls --color=auto"
+alias gri="git rebase -i"
+alias glp="git log --pretty=fuller"
+alias gcf="git commit --fixup"
+alias grd="git rebase --committer-date-is-author-date"
+
+export EDITOR=nvim
 
 # Custom path
 export PATH=$PATH:~/.local/bin
