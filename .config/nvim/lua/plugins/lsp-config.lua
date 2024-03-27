@@ -20,6 +20,13 @@ return {
 			local lspconfig = require("lspconfig")
 			lspconfig.lua_ls.setup({
 				capabilities = capabilities,
+				settings = {
+					Lua = {
+						completion = {
+							callSnippet = "Replace",
+						},
+					},
+				},
 			})
 			lspconfig.gopls.setup({
 				capabilities = capabilities,
