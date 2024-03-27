@@ -1,0 +1,19 @@
+import = ["~/.config/alacritty/tokyonight_night.toml"]
+
+[cursor.style]
+shape = "Underline"
+
+[font]
+size = 14.0
+
+[font.normal]
+family = "MesloLGS NF"
+
+[window]
+decorations = "full"
+startup_mode = "Windowed"
+dynamic_padding = true
+
+[window.padding]
+x = 5
+y = 5
