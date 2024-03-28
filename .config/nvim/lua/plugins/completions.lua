@@ -1,16 +1,14 @@
 return {
 	{
-		"hrsh7th/cmp-nvim-lsp",
-	},
-	{
-		"L3MON4D3/LuaSnip",
-		dependencies = {
-			"rafamadriz/friendly-snippets",
-			"saadparwaiz1/cmp_luasnip",
-		},
-	},
-	{
 		"hrsh7th/nvim-cmp",
+		dependencies = {
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
+			"L3MON4D3/LuaSnip",
+			"hrsh7th/cmp-nvim-lsp",
+			"saadparwaiz1/cmp_luasnip",
+			"rafamadriz/friendly-snippets",
+		},
 		config = function()
 			-- Set up nvim-cmp.
 			local cmp = require("cmp")
@@ -37,8 +35,8 @@ return {
 				sources = cmp.config.sources({
 					{ name = "nvim_lsp" },
 					{ name = "luasnip" }, -- For luasnip users.
-				}, {
 					{ name = "buffer" },
+					{ name = "path" },
 				}),
 			})
 		end,

@@ -6,7 +6,6 @@ return {
 		config.setup({
 			ensure_installed = { "lua", "go", "python", "bash" },
 			highlight = { enable = true },
-			indent = { enable = true },
 		})
 	end,
 }

@@ -15,8 +15,12 @@ return {
 	},
 	{
 		"neovim/nvim-lspconfig",
+		dependencies = {
+			"folke/neodev.nvim",
+		},
 		config = function()
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			require("neodev").setup({})
 			local lspconfig = require("lspconfig")
 			lspconfig.lua_ls.setup({
 				capabilities = capabilities,
@@ -25,6 +29,7 @@ return {
 						completion = {
 							callSnippet = "Replace",
 						},
+						diagnostics = { disable = { 'missing-fields' } }
 					},
 				},
 			})
