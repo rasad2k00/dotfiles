@@ -32,27 +32,27 @@ function install_prerequirements {
 	check_command neovim
 	check_command go
 	check_command cargo
+	check_command fzf
 }
 
 function install_fonts {
-	curl -sO "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf" --output-dir "~/.local/share/fonts"
-	curl -sO "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf" --output-dir "~/.local/share/fonts"
-	curl -sO "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf" --output-dir "~/.local/share/fonts"
-	curl -sO "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf" --output-dir "~/.local/share/fonts"
+	mkdir -p ~/.local/share/fonts
+	curl -sLO "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/0xProto.zip" --output-dir ~/.local/share/fonts
+	unzip ~/.local/share/fonts/0xProto.zip -d ~/.local/share/fonts && rm ~/.local/share/fonts/0xProto.zip
 }
 
 function install_nvm {
 	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
 }
 
-function install_node {
+function configure_node {
 	install_nvm
 	nvm install --lts
 }
 
 function configure_tmux {
 	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-	ln -s ./.tmux.conf ~/.tmux.conf
+	ln -s $PWD/.tmux.conf ~/.tmux.conf
 }
 
 function configure_zsh {
@@ -60,21 +60,20 @@ function configure_zsh {
 	git clone https://github.com/sindresorhus/pure.git ~/.zsh/pure
 	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh/zsh-syntax-highlighting
 	git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
-	git clone https://github.com/jeffreytse/zsh-vi-mode.git ~/.zsh/zsh-vi-mode
-	ln -s ./.zshrc ~/.zshrc
+	ln -s $PWD/.zshrc ~/.zshrc
 }
 
 function configure_neovim {
-	ln -s .config/nvim ~/.config/nvim
+	ln -s $PWD/.config/nvim ~/.config/nvim
 }
 
 function main {
 	install_prerequirements
 	install_fonts
-	install_node
 	configure_tmux
 	configure_zsh
+	configure_node
 	configure_neovim
 }
 
-main
+install_fonts
