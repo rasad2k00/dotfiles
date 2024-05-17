@@ -27,6 +27,7 @@ function check_command {
 function install_prerequirements {
 	check_command git
 	check_command curl
+	check_command alacritty
 	check_command zsh
 	check_command tmux
 	check_command neovim
@@ -76,4 +77,4 @@ function main {
 	configure_neovim
 }
 
-install_fonts
+main
