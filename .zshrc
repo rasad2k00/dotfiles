@@ -1,11 +1,6 @@
 # Pure prompt 
 fpath+=($HOME/.zsh/pure)
 autoload -U promptinit; promptinit
-prompt_newline='%666v'
-PROMPT=" $PROMPT"
-print() {
-  [ 0 -eq $# -a "prompt_pure_precmd" = "${funcstack[-1]}" ] || builtin print "$@";
-}
 prompt pure
 
 # Case-insensitive completion
@@ -26,6 +21,10 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+# FZF
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source /usr/share/fzf/shell/key-bindings.zsh
+
 # Custom aliases
 alias ls="ls --color=auto"
 alias gri="git rebase -i"
@@ -43,4 +42,3 @@ export PATH=$PATH:~/.local/bin
 export PATH=$PATH:~/go/bin
 export PATH=$PATH:~/.cargo/bin
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
