@@ -10,3 +10,10 @@ vim.opt.termguicolors = true
 vim.g.mapleader = " "
 
 vim.opt.clipboard = "unnamedplus"
+vim.diagnostic.config({
+	virtual_text = false,
+	signs = true,
+	underline = true,
+	update_in_insert = false,
+	severity_sort = true,
+})

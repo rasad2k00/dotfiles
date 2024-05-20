@@ -16,3 +16,6 @@ vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, {})
 vim.keymap.set("n", "<leader>w", ":w<CR>")
 vim.keymap.set("n", "<leader>q", ":q!<CR>")
 vim.keymap.set("n", "<leader>wq", ":wq<CR>")
+
+-- Diagnostic mappings
+vim.keymap.set("n", "<leader>ld", "<cmd>lua vim.diagnostic.open_float()<CR>", {})
