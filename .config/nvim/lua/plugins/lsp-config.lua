@@ -9,7 +9,7 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "gopls", "pyright", "bashls" },
+				ensure_installed = { "lua_ls", "gopls", "pyright", "bashls", "eslint", "tsserver" },
 			})
 		end,
 	},
@@ -29,7 +29,7 @@ return {
 						completion = {
 							callSnippet = "Replace",
 						},
-						diagnostics = { disable = { 'missing-fields' } }
+						diagnostics = { disable = { "missing-fields" } },
 					},
 				},
 			})
