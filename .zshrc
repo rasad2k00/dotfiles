@@ -17,13 +17,12 @@ HISTSIZE=10000
 SAVEHIST=10000
 setopt appendhistory
 
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# FZF
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-source /usr/share/fzf/shell/key-bindings.zsh
 
 # Custom aliases
 alias ls="ls --color=auto"
