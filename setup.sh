@@ -69,6 +69,14 @@ function configure_neovim {
 	ln -s $PWD/.config/nvim ~/.config/nvim
 }
 
+function configure_alacritty {
+	ln -s $PWD/.config/alacritty ~/.config/alacritty
+}
+
+function configure_i3 {
+	ln -s $PWD/.config/i3 ~/.config/i3
+}
+
 function main {
 	install_prerequirements
 	install_fonts
@@ -76,6 +84,8 @@ function main {
 	configure_zsh
 	configure_node
 	configure_neovim
+	configure_alacritty
+	configure_i3
 }
 
 main
