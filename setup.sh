@@ -34,6 +34,7 @@ function install_prerequirements {
 	check_command go
 	check_command cargo
 	check_command fzf
+	check_command gitmux
 }
 
 function install_fonts {
