@@ -11,14 +11,9 @@ blinking = "Always"
 size = 16.0
 
 [font.normal]
-family = "0xProto Nerd Font"
+family = "MesloLGS NF"
 
 [window]
 decorations = "none"
 startup_mode = "maximized"
 dynamic_padding = true
-opacity = 0.5
-
-[window.padding]
-x = 5
-y = 5
