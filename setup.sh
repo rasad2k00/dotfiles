@@ -39,8 +39,8 @@ function install_prerequirements {
 
 function install_fonts {
 	mkdir -p ~/.local/share/fonts
-	curl -sLO "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/0xProto.zip" --output-dir ~/.local/share/fonts
-	unzip ~/.local/share/fonts/0xProto.zip -d ~/.local/share/fonts && rm ~/.local/share/fonts/0xProto.zip
+	curl -sLO "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/JetBrainsMono.zip" --output-dir ~/.local/share/fonts
+	unzip ~/.local/share/fonts/JetBrainsMono.zip -d ~/.local/share/fonts && rm ~/.local/share/fonts/JetBrainsMono.zip
 }
 
 function install_nvm {
@@ -53,13 +53,12 @@ function configure_node {
 }
 
 function configure_tmux {
-	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 	ln -s $PWD/.tmux.conf ~/.tmux.conf
 }
 
 function configure_zsh {
 	mkdir -p ~/.zsh
-	git clone https://github.com/sindresorhus/pure.git ~/.zsh/pure
+	curl -sS https://starship.rs/install.sh | sh
 	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh/zsh-syntax-highlighting
 	git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
 	ln -s $PWD/.zshrc ~/.zshrc
@@ -85,7 +84,8 @@ function main {
 	configure_node
 	configure_neovim
 	configure_alacritty
-	configure_i3
+	#configure_i3
+	chsh
 }
 
 main

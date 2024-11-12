@@ -30,7 +30,7 @@ alias gd="git diff"
 alias gc="git commit"
 
 export EDITOR=nvim
-export RUSTICL_ENABLE=radeonsi
+#export RUSTICL_ENABLE=radeonsi
 export FZF_ALT_C_OPTS='--walker-root=/home/rasad2k'
 
 bindkey -v
