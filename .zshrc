@@ -2,10 +2,15 @@
 autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
+# Enable Ctrl-x-e to edit command line
+autoload -U edit-command-line
+# Emacs style
+zle -N edit-command-line
+bindkey '^x^e' edit-command-line
+
 # ZSH plugins
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-
 # Enable history functionality
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
@@ -31,7 +36,7 @@ alias gc="git commit"
 
 export EDITOR=nvim
 #export RUSTICL_ENABLE=radeonsi
-export FZF_ALT_C_OPTS='--walker-root=/home/rasad2k'
+export FZF_ALT_C_OPTS='--walker-root=/home/rashad2k'
 
 bindkey -v
 
