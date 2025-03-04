@@ -17,9 +17,6 @@ HISTSIZE=10000
 SAVEHIST=10000
 setopt appendhistory
 
-# Set up fzf key bindings and fuzzy completion
-source <(fzf --zsh)
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -36,13 +33,16 @@ alias gc="git commit"
 
 export EDITOR=nvim
 #export RUSTICL_ENABLE=radeonsi
-export FZF_ALT_C_OPTS='--walker-root=/home/rashad2k'
-
+export FZF_ALT_C_OPTS="--walker-root=$(eval echo ~$USER)"
 bindkey -v
 
 # Custom path
 export PATH=$PATH:~/.local/bin
 export PATH=$PATH:~/go/bin
 export PATH=$PATH:~/.cargo/bin
+export PATH=$PATH:~/.local/share/bob/nvim-bin
+
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
 
 eval "$(starship init zsh)"
