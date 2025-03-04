@@ -18,7 +18,7 @@ vim.diagnostic.config({
 	severity_sort = true,
 })
 
-vim.api.nvim_create_autocmd("VimLeave", {
-	pattern = "*",
-	command = "set guicursor=a:hor20-blinkon1",
-})
+-- vim.api.nvim_create_autocmd("VimLeave", {
+-- 	pattern = "*",
+-- 	command = "set guicursor=a:hor20-blinkon1",
+-- })
