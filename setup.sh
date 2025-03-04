@@ -27,14 +27,11 @@ function check_command {
 function install_prerequirements {
 	check_command git
 	check_command curl
-	check_command alacritty
 	check_command zsh
 	check_command tmux
 	check_command neovim
 	check_command go
 	check_command cargo
-	check_command fzf
-	check_command gitmux
 }
 
 function install_fonts {
@@ -49,6 +46,7 @@ function install_nvm {
 
 function configure_node {
 	install_nvm
+	source ~/.zshrc
 	nvm install --lts
 }
 
@@ -64,16 +62,35 @@ function configure_zsh {
 	ln -s $PWD/.zshrc ~/.zshrc
 }
 
-function configure_neovim {
-	ln -s $PWD/.config/nvim ~/.config/nvim
-}
-
 function configure_alacritty {
 	ln -s $PWD/.config/alacritty ~/.config/alacritty
 }
 
 function configure_i3 {
 	ln -s $PWD/.config/i3 ~/.config/i3
+}
+
+function get_release_version {
+	curl -s https://api.github.com/repos/$1/releases/latest | grep "browser_download_url" | head -n 1 | cut -d / -f 8
+}
+
+function install_bob {
+	VERSION=$(get_release_version "mordechaihadad/bob")
+	curl -sLO https://github.com/mordechaihadad/bob/releases/download/$VERSION/bob-linux_x86_64.zip --output-dir ~/Downloads
+	tar -xvf ~/Downloads/bob-linux_x86_64.zip -C ~/Downloads && mv ~/Downloads/bob-linux-x86_64/bob ~/.local/bin && chmod +x ~/.local/bin/bob && rm -rf ~/Downloads/bob-linux_x86_64*
+}
+
+function configure_neovim {
+	install_bob
+	source ~/.zshrc
+	bob install stable
+	ln -s $PWD/.config/nvim ~/.config/nvim
+}
+
+function install_fzf {
+	VERSION=$(get_release_version "junegunn/fzf")
+	curl -sLO https://github.com/junegunn/fzf/releases/download/$VERSION/fzf-${VERSION:1}-linux_amd64.tar.gz --output-dir ~/Downloads
+	tar -xvf ~/Downloads/fzf-${VERSION:1}-linux_amd64.tar.gz -C ~/.local/bin && rm ~/Downloads/fzf-${VERSION:1}-linux_amd64.tar.gz
 }
 
 function main {
@@ -83,8 +100,9 @@ function main {
 	configure_zsh
 	configure_node
 	configure_neovim
-	configure_alacritty
+	#configure_alacritty
 	#configure_i3
+	install_fzf
 	chsh
 }
 
