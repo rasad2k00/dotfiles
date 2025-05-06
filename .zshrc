@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # Case-insensitive completion
 autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
@@ -30,6 +37,8 @@ alias grd="git rebase --committer-date-is-author-date"
 alias gs="git status"
 alias gd="git diff"
 alias gc="git commit"
+alias gp="git push origin main"
+alias vim="nvim"
 
 export EDITOR=nvim
 #export RUSTICL_ENABLE=radeonsi
@@ -40,9 +49,10 @@ bindkey -v
 export PATH=$PATH:~/.local/bin
 export PATH=$PATH:~/go/bin
 export PATH=$PATH:~/.cargo/bin
-export PATH=$PATH:~/.local/share/bob/nvim-bin
 
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
+source ~/powerlevel10k/powerlevel10k.zsh-theme
 
-eval "$(starship init zsh)"
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
