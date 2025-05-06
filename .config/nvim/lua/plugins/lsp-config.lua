@@ -23,6 +23,7 @@ return {
 			require("neodev").setup({})
 			local lspconfig = require("lspconfig")
 			lspconfig.lua_ls.setup({
+				cmd = { "lua-language-server", "--force-accept-workspace" },
 				capabilities = capabilities,
 				settings = {
 					Lua = {
