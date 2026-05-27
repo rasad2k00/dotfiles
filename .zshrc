@@ -28,6 +28,12 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+# Custom path
+export PATH=$PATH:~/.local/bin
+export PATH=$PATH:~/go/bin
+export PATH=$PATH:~/.cargo/bin
+export PATH=$PATH:/Applications/MEGAcmd.app/Contents/MacOS
+
 # Custom aliases
 alias ls="ls --color=auto"
 alias gri="git rebase -i"
@@ -39,25 +45,39 @@ alias gd="git diff"
 alias gc="git commit"
 alias gp="git push origin main"
 alias vim="nvim"
+alias mega="MEGAcmdShell"
 
 export EDITOR=nvim
-#export RUSTICL_ENABLE=radeonsi
-export FZF_ALT_C_OPTS="--walker-root=$(eval echo ~$USER)"
+export FD_OPTIONS="--type=symlink --hidden --follow --glob --ignore-file=$HOME/.config/fd/ignore --exclude .git"
+export FZF_CTRL_T_OPTS="--walker-root /Users/rasad2k --walker-skip /Users/rasad2k/Library,/Users/rasad2k/go,Users/rasad2k/.local,/Users/rasad2k/.lmstudio,/Users/rasad2k/.ollama,/Users/rasad2k/.BurpSuite,/Users/rasad2k/.docker"
+export FZF_ALT_C_OPTS="--walker-root /Users/rasad2k --walker-skip /Users/rasad2k/Library,/Users/rasad2k/go,Users/rasad2k/.local,/Users/rasad2k/.lmstudio,/Users/rasad2k/.ollama,/Users/rasad2k/.BurpSuite,/Users/rasad2k/.docker"
+export FZF_COMPLETION_PATH_OPTS='--walker-root /Users/rasad2k --walker-skip /Users/rasad2k/Library,/Users/rasad2k/go,Users/rasad2k/.local,/Users/rasad2k/.lmstudio,/Users/rasad2k/.ollama,/Users/rasad2k/.BurpSuite,/Users/rasad2k/.docker'
 bindkey -v
-
-# Custom path
-export PATH=$PATH:~/.local/bin
-export PATH=$PATH:~/go/bin
-export PATH=$PATH:~/.cargo/bin
 
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
-source ~/powerlevel10k/powerlevel10k.zsh-theme
+source ~/Developer/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/rasad2k/.lmstudio/bin"
+# End of LM Studio CLI section
 
 autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '^xe' edit-command-line
 bindkey '^x^e' edit-command-line
+
+# bun completions
+[ -s "/Users/rasad2k/.bun/_bun" ] && source "/Users/rasad2k/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/rasad2k/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions
