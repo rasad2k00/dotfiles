@@ -12,10 +12,12 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 			"EndOfBuffer",
 			"NeoTreeNormal",
 			"NeoTreeNormalNC",
-			"NormalNc",
-			"TablineFill", -- this is specific to how I like my tabline to look like
+			"NeoTreeFloatBorder",
+			"NeoTreeFloatTitle",
+			"NormalNC",
+			"TablineFill",
 			"NormalFloat",
-			"NormalFloatBorder",
+			"FloatBorder",
 		}
 		for _, name in pairs(highlights) do
 			vim.cmd.highlight(name .. " guibg=none ctermbg=none")
