@@ -11,6 +11,9 @@ vim.keymap.set("n", "<leader>lg", vim.lsp.buf.definition, {})
 vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, {})
 vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, {})
 vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, {})
+vim.keymap.set("n", "<leader>le", function()
+  vim.cmd("botright split | resize " .. math.floor(vim.o.lines * 0.25) .. " | terminal go run main.go")
+end, {})
 
 -- File mappings
 vim.keymap.set("n", "<leader>w", ":w<CR>")
